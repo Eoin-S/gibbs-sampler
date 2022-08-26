@@ -24,7 +24,7 @@ Gibbs Sampling
 
 The **Gibbs Sampler** or otherwise known **Gibbs Sampling** is a computationally convenient Bayesian inference algorithm. This package implements the Gibbs Sampler using the APIs of scikit-learn objects, which enables the estimator to safely interact with scikit-learn Pipelines and model selection tools.
 
-Installation
+# Installation
 
 Contributing
 
