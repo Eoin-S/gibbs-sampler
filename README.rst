@@ -7,7 +7,7 @@
 .. _Travis: https://app.travis-ci.com/github/Eoin-S/gibbs-sampler
 
 .. |AppVeyor| image:: https://ci.appveyor.com/api/projects/status/coy2qqaqr1rnnt5y/branch/master?svg=true
-.. _AppVeyor: https://ci.appveyor.com/project/glemaitre/project-template
+.. _AppVeyor: https://ci.appveyor.com/project/Eoin-S/gibbs-sampler
 
 .. |Codecov| image:: https://codecov.io/gh/scikit-learn-contrib/project-template/branch/master/graph/badge.svg
 .. _Codecov: https://codecov.io/gh/scikit-learn-contrib/project-template
