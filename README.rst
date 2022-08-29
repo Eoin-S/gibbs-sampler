@@ -13,10 +13,10 @@
 .. _Codecov: https://codecov.io/gh/scikit-learn-contrib/project-template
 
 .. |CircleCI| image:: https://circleci.com/gh/scikit-learn-contrib/project-template.svg?style=shield&circle-token=:circle-token
-.. _CircleCI: https://circleci.com/gh/scikit-learn-contrib/project-template/tree/master
+.. _CircleCI: https://app.circleci.com/pipelines/github/Eoin-S/gibbs-sampler
 
-.. |ReadTheDocs| image:: https://readthedocs.org/projects/sklearn-template/badge/?version=latest
-.. _ReadTheDocs: https://sklearn-template.readthedocs.io/en/latest/?badge=latest
+.. |ReadTheDocs| image:: https://readthedocs.org/projects/gibbs-sampling/badge/?version=latest
+.. _ReadTheDocs: https://gibbs-sampling.readthedocs.io/en/latest/?badge=latest
 
 Gibbs Sampling
 ============================================================
