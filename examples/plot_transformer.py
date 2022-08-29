@@ -7,20 +7,9 @@ An example plot of :class:`skltemplate.template.TemplateTransformer`
 """
 import numpy as np
 from matplotlib import pyplot as plt
-from skltemplate import TemplateTransformer
+from gibbs_sampler import GibbsSampler
 
-X = np.arange(50, dtype=np.float).reshape(-1, 1)
-X /= 50
-estimator = TemplateTransformer()
-X_transformed = estimator.fit_transform(X)
+estimator = GibbsSampler()
 
-plt.plot(X.flatten(), label='Original Data')
-plt.plot(X_transformed.flatten(), label='Transformed Data')
-plt.title('Plots of original and transformed data')
+print(estimator.get_params())
 
-plt.legend(loc='best')
-plt.grid(True)
-plt.xlabel('Index')
-plt.ylabel('Value of Data')
-
-plt.show()
