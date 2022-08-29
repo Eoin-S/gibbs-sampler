@@ -2,8 +2,8 @@
 
 [run]
 branch = True
-source = skltemplate
-include = */skltemplate/*
+source = gibbs_sampler
+include = */gibbs_sampler/*
 omit =
     */setup.py
 
