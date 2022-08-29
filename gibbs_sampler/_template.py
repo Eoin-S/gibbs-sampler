@@ -2,12 +2,12 @@
 This is a module to be used as a reference for building other modules
 """
 import numpy as np
-from sklearn.base import BaseEstimator, ClassifierMixin, TransformerMixin
+from sklearn.base import BaseEstimator, RegressorMixin
 from sklearn.utils.validation import check_X_y, check_array, check_is_fitted
 from sklearn.utils.multiclass import unique_labels
 from sklearn.metrics import euclidean_distances
 
-class GibbsSampler(BaseEstimator):
+class GibbsSampler(BaseEstimator, RegressorMixin):
     """ A template estimator to be used as a reference implementation.
 
     For more information regarding how to build your own estimator, read more
