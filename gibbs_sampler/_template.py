@@ -90,13 +90,6 @@ class GibbsSampler(BaseEstimator):
         check_is_fitted(self, 'is_fitted_')
         return np.ones(X.shape[0], dtype=np.int64)
 
-"""
-Created on Fri Jun 17 13:05:44 2022
-
-@author: ebolger2
-"""
-import numpy as np
-import pandas as pd
 
 def sample_beta_0(y, x, beta_1, tau, mu_0, tau_0):
     N = len(y)
@@ -121,7 +114,7 @@ def sample_tau(y, x, beta_0, beta_1, alpha, beta):
     beta_new = beta + np.sum(resid * resid) / 2
     return np.random.gamma(alpha_new, 1 / beta_new)
 
-def gibbs(y, x, iters, init, hypers):
+"""def gibbs(y, x, iters, init, hypers):
     assert len(y) == len(x)
     beta_0 = init["beta_0"]
     beta_1 = init["beta_1"]
@@ -138,4 +131,4 @@ def gibbs(y, x, iters, init, hypers):
     trace = pd.DataFrame(trace)
     trace.columns = ['beta_0', 'beta_1', 'tau']
         
-    return trace
+    return trace"""
