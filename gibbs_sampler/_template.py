@@ -15,18 +15,24 @@ class GibbsSampler(BaseEstimator, RegressorMixin):
 
     Parameters
     ----------
-    demo_param : str, default='demo_param'
-        A parameter used for demonstation of how to pass and store paramters.
+    slope : int, default=0
+        Initial guess on slope, independent variable.
+    intercept : int, default=0
+        Initial guess on intercept, independent variable.
+    gamma : float, default=2.0
+        gamma defines the precision of the target model
+    n_iter : float, default=2.0
+        Number of iterations excuted
 
     Examples
     --------
-    >>> from skltemplate import TemplateEstimator
+    >>> from gibbs_sampler import GibbsSampler
     >>> import numpy as np
     >>> X = np.arange(100).reshape(100, 1)
     >>> y = np.zeros((100, ))
-    >>> estimator = TemplateEstimator()
+    >>> estimator = GibbsSampler()
     >>> estimator.fit(X, y)
-    TemplateEstimator()
+    GibbsSampler()
     """
     def __init__(
             self, 
