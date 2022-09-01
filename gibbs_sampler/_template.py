@@ -1,13 +1,16 @@
 """
 This is a module to be used as a reference for building other modules
 """
+from abc import ABCMeta, abstractmethod
+#from sklearn.base import LinearModel
 import numpy as np
+from sklearn import linear_model
 from sklearn.base import BaseEstimator, RegressorMixin
 from sklearn.utils.validation import check_X_y, check_array, check_is_fitted
 from sklearn.utils.multiclass import unique_labels
 from sklearn.metrics import euclidean_distances
 
-class GibbsSampler(BaseEstimator, RegressorMixin):
+class GibbsSampler(BaseEstimator ,RegressorMixin):
     """ A template estimator to be used as a reference implementation.
 
     For more information regarding how to build your own estimator, read more
@@ -41,11 +44,12 @@ class GibbsSampler(BaseEstimator, RegressorMixin):
             gamma=2, 
             n_iter=1000, 
             mu_0=0, 
-            tau_0=0, 
+            tau_0=1, 
             mu_1=0, 
-            tau_1=0, 
+            tau_1=1, 
             alpha=2, 
-            beta=1
+            beta=1,
+            random_state=None,
             ):
         self.n_iter = n_iter
         self.intercept = intercept
@@ -57,6 +61,7 @@ class GibbsSampler(BaseEstimator, RegressorMixin):
         self.tau_1 = tau_1
         self.alpha = alpha
         self.beta = beta
+        self.random_state = random_state
 
     def fit(self, X, y):
         """A reference implementation of a fitting function.
@@ -76,6 +81,19 @@ class GibbsSampler(BaseEstimator, RegressorMixin):
         """
         X, y = check_X_y(X, y, accept_sparse=True)
         self.is_fitted_ = True
+        
+        trace = np.zeros((self.n_iter, 3)) ## trace to store values of beta_0, beta_1, tau
+        
+        for i in range(self.n_iter):
+            
+            c = sample_beta_0(y, X, self.slope, self.gamma, self.mu_0, self.tau_0)
+            m = sample_beta_1(y, X, self.intercept, self.gamma, self.mu_1, self.tau_1)
+            
+            tau = sample_tau(y, X, c, m, self.alpha, self.beta)
+            trace[i,:] = np.array((c, m, tau))
+        
+        self.coef_ = np.mean(trace[0,:]), np.mean(trace[1,:])
+        
         # `fit` should always return `self`
         return self
 
@@ -94,7 +112,8 @@ class GibbsSampler(BaseEstimator, RegressorMixin):
         """
         X = check_array(X, accept_sparse=True)
         check_is_fitted(self, 'is_fitted_')
-        return np.ones(X.shape[0], dtype=np.int64)
+        
+        return self.coef_[1] + self.coef_[0] * X
 
 
 def sample_beta_0(y, x, beta_1, tau, mu_0, tau_0):
@@ -119,22 +138,3 @@ def sample_tau(y, x, beta_0, beta_1, alpha, beta):
     resid = y - beta_0 - beta_1 * x
     beta_new = beta + np.sum(resid * resid) / 2
     return np.random.gamma(alpha_new, 1 / beta_new)
-
-"""def gibbs(y, x, iters, init, hypers):
-    assert len(y) == len(x)
-    beta_0 = init["beta_0"]
-    beta_1 = init["beta_1"]
-    tau = init["tau"]
-    
-    trace = np.zeros((iters, 3)) ## trace to store values of beta_0, beta_1, tau
-    
-    for it in range(iters):
-        beta_0 = sample_beta_0(y, x, beta_1, tau, hypers["mu_0"], hypers["tau_0"])
-        beta_1 = sample_beta_1(y, x, beta_0, tau, hypers["mu_1"], hypers["tau_1"])
-        tau = sample_tau(y, x, beta_0, beta_1, hypers["alpha"], hypers["beta"])
-        trace[it,:] = np.array((beta_0, beta_1, tau))
-        
-    trace = pd.DataFrame(trace)
-    trace.columns = ['beta_0', 'beta_1', 'tau']
-        
-    return trace"""
