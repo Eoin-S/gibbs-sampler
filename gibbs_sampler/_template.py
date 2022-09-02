@@ -24,7 +24,7 @@ class GibbsSampler(BaseEstimator ,RegressorMixin):
         Initial guess on intercept, independent variable.
     gamma : float, default=2.0
         gamma defines the precision of the target model
-    n_iter : float, default=2.0
+    n_iter : int, default=2.0
         Number of iterations excuted
 
     Examples

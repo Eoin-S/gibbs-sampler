@@ -14,7 +14,7 @@ def data():
 
 def test_template_estimator(data):
     est = GibbsSampler()
-    assert est.demo_param == 'demo_param'
+    assert est.slope == 0
 
     est.fit(*data)
     assert hasattr(est, 'is_fitted_')
