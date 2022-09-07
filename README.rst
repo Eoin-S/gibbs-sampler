@@ -38,3 +38,6 @@ If you would like to contribute a feature then fork the master branch (*fork the
   python setup.py test
 
 Let us know what you want to do just in case we're already working on an implementation of something similar. This way we can avoid any needless duplication of effort. Also, please don't forget to add tests for any new functions.
+
+
+test cov
